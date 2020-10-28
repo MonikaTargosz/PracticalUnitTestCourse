@@ -2,9 +2,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+//Using AssertJ to make tests more readable!
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.junit.jupiter.api.Assertions.*;
 
 class VatServiceTest {
 
@@ -12,7 +12,7 @@ class VatServiceTest {
     Product product;
 
     @Test
-    @DisplayName("should calculate gross price for default VAT")
+    @DisplayName("should calculate gross price for default VAT") //Only in version JUnit 5.
     void shouldCalculateGrossPriceForDefaultVat() throws IncorrectVatException {
         //given
         product = new Product("01",20.00);
@@ -20,7 +20,6 @@ class VatServiceTest {
         double result = vatService.getGrossPriceForDefaultVat(product);
         //when
         assertThat(result).isEqualTo((24.60));
-        assertEquals(24.60, result);
     }
 
 
@@ -33,7 +32,6 @@ class VatServiceTest {
         double result = vatService.getGrossPrice(product.getNetPrice(), 0.08);
         //when
         assertThat(result).isEqualTo((10.80));
-        assertEquals(10.80, result);
     }
 
     @Test
@@ -41,8 +39,6 @@ class VatServiceTest {
     void shouldThrowExceptionWhenVatIsTooHigh() {
         //given
         product = new Product("03",10.00);
-        //then
-
         //when
         assertThatExceptionOfType(IncorrectVatException.class).isThrownBy(() -> {
             vatService.getGrossPrice(product.getNetPrice(), 10);

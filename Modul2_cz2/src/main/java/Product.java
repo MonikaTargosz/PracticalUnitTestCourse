@@ -13,5 +13,4 @@ public class Product {
     public double getNetPrice() {
         return netPrice;
     }
-
 }

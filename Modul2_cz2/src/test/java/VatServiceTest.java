@@ -1,9 +1,9 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import org.mockito.Mockito;
 
+//Using AssertJ to make tests more readable!
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.when;
@@ -15,7 +15,7 @@ class VatServiceTest {
     Product product;
 
     @Test
-    @DisplayName("should calculate gross price for default VAT")
+    @DisplayName("should calculate gross price for default VAT") //Only in version JUnit 5.
     void shouldCalculateGrossPrice() throws IncorrectVatException {
         //given
         when(vatProvider.getDefaultVat()).thenReturn(0.23);
@@ -26,6 +26,7 @@ class VatServiceTest {
         assertThat(result).isEqualTo(24.60);
     }
     @Test
+    @DisplayName("should calculate gross price for other VAT value")
     void shouldCalculateGrossPriceForOtherVatValue() throws IncorrectVatException {
         //given
         String type = "Food";
@@ -37,6 +38,7 @@ class VatServiceTest {
         assertThat(result).isEqualTo(10.80);
     }
     @Test
+    @DisplayName("should throw exception when VAT is too high")
     void shouldThrowExceptionWhenVatIsTooHigh() {
         //given
         String type = "Clothes";
@@ -47,7 +49,6 @@ class VatServiceTest {
             vatService.getGrossPrice(product.getNetPrice(), type);
         });
     }
-
     @BeforeEach
     void prepareVatService() {
         vatProvider = Mockito.mock(VatProvider.class);

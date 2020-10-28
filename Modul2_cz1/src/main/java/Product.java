@@ -1,4 +1,5 @@
 public class Product {
+
     String id;
     double netPrice;
 
@@ -6,9 +7,7 @@ public class Product {
         this.id=id;
         this.netPrice=netPrice;
     }
-    public String getId() {
-        return id;
-    }
+
     public double getNetPrice() {
         return netPrice;
     }
