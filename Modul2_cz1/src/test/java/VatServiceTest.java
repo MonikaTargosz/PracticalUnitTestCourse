@@ -15,7 +15,7 @@ class VatServiceTest {
     @DisplayName("should calculate gross price for default VAT")
     void shouldCalculateGrossPriceForDefaultVat() throws IncorrectVatException {
         //given
-        product = new Product("Clothes",20.00);
+        product = new Product("01",20.00);
         //then
         double result = vatService.getGrossPriceForDefaultVat(product);
         //when
@@ -28,7 +28,7 @@ class VatServiceTest {
     @DisplayName("should calculate gross price for other VAT value")
     void shouldCalculateGrossPriceForOtherVatValue() throws IncorrectVatException {
         //given
-        product = new Product("Book",10.00);
+        product = new Product("02",10.00);
         //then
         double result = vatService.getGrossPrice(product.getNetPrice(), 0.08);
         //when
@@ -40,7 +40,7 @@ class VatServiceTest {
     @DisplayName("should throw exception when VAT is too high")
     void shouldThrowExceptionWhenVatIsTooHigh() {
         //given
-        product = new Product("Cosmetic",10.00);
+        product = new Product("03",10.00);
         //then
 
         //when
